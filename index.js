@@ -89,7 +89,7 @@ app.post('/send-pdf', (req, res) => {
 
 //CREATE AND SEND PDF INVOICE
 app.post('/create-pdf', (req, res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
+    pdf.create(pdfTemplate(req.body), options).toFile('invoice.pdf', (err) => {
         if(err) {
             res.send(Promise.reject());
         }
