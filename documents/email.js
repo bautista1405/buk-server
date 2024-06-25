@@ -1,4 +1,9 @@
 import moment from 'moment'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default function (
     { 
@@ -128,12 +133,12 @@ hr {
             
               <hr>
               <div>
-                  <p style="font-size: 18px">${Number(balanceDue) <= 0 ? 'Thank you for your business' : type} ${Number(balanceDue) != 0 ? 'for' : ''} <span style="font-weight: 700">${Number(balanceDue) <= 0 ? '' : balanceDue}</span> ${Number(balanceDue) <= 0 ? '' : `due by`} <span style="font-weight: 700">${Number(balanceDue) <= 0 ? '' : moment(dueDate).format("MMM Do YYYY")}</span></p>
+                  <p style="font-size: 18px">${Number(balanceDue) <= 0 ? 'Tu factura/recibo' : type} ${Number(balanceDue) != 0 ? 'for' : ''} <span style="font-weight: 700">${Number(balanceDue) <= 0 ? '' : balanceDue}</span> ${Number(balanceDue) <= 0 ? '' : `due by`} <span style="font-weight: 700">${Number(balanceDue) <= 0 ? '' : moment(dueDate).format("MMM Do YYYY")}</span></p>
               </div>
               
               <div class="link-container">
                   <a href=${link} class="invoice-link" style="color: white">
-                  ${Number(balanceDue) <= 0 ? 'View Receipt' : `View ${type}`}
+                  ${Number(balanceDue) <= 0 ? 'Ver en la app' : 'Ver en la app'}
                   </a>
               </div>
               
@@ -148,11 +153,11 @@ hr {
         </div>
         
       <div class"footer">
-          <a href="https://accountill.com">
-          <img class="footer-logo" src="https://i.postimg.cc/hGZKzdkS/logo.png" alt="arc-invoice"/>
+          <a href="https://buk-client.vercel.app">
+          <img class="footer-logo" src="${__dirname}/logo-no-bg.png" alt="buk-logo"/>
         </a>
       </div>
-    <p style="text-align: center">Make beautiful invoice for free at accountill.com</p>
+    <p style="text-align: center">Visitanos en https://buk-client.vercel.app </p>
     </div>
     </body>
 </html>`

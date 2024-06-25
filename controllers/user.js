@@ -110,24 +110,24 @@ export const forgotPassword = (req,res)=>{
         User.findOne({email : email})
         .then(user=>{
             if(!user){
-                return res.status(422).json({error:"User does not exist in our database"})
+                return res.status(422).json({error:"El usuario no existe."})
             }
             user.resetToken = token
             user.expireToken = Date.now() + 3600000
             user.save().then((result)=>{
                 transporter.sendMail({
                     to:user.email,
-                    from:"Accountill <hello@accountill.com>",
-                    subject:"Password reset request",
+                    from:"Buk <aramendia30@gmail.com>",
+                    subject:"Resetea tu contraseña",
                     html:`
-                    <p>You requested for password reset from Arc Invoicing application</p>
-                    <h5>Please click this <a href="https://accountill.com/reset/${token}">link</a> to reset your password</h5>
-                    <p>Link not clickable?, copy and paste the following url in your address bar.</p>
-                    <p>https://accountill.com/reset/${token}</p>
-                    <P>If this was a mistake, just ignore this email and nothing will happen.</P>
+                    <p>Solicitaste un reseteo de contraseña para tu cuenta de Buk</p>
+                    <h5>Por favor haz click en este <a href="https://buk-client.vercel.app/reset/${token}">link</a> para resetear tu contaseña.</h5>
+                    <p>¿El link no funciona? Copia y pega esta URL en tu navegador.</p>
+                    <p>https://buk-client.vercel.app/reset/${token}</p>
+                    <P>Si esto es un error o no lo solicitaste un reseteo de contraseña, por favor ignora este mensaje.</P>
                     `
                 })
-                res.json({message:"check your email"})
+                res.json({message:"Revisa tu email."})
             }).catch((err) => console.log(err))
   
         })

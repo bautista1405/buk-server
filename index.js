@@ -17,7 +17,7 @@ import profile from './routes/profile.js'
 import providerRoutes from './routes/providers.js'
 import stockRoutes from './routes/stocks.js'
 
-import 'moment/locale/es';
+import 'moment/locale/es.js';
 
 import pdfTemplate from './documents/index.js'
 // import invoiceTemplate from './documents/invoice.js'
@@ -39,11 +39,12 @@ app.use('/stocks', stockRoutes)
 
 // NODEMAILER TRANSPORT FOR SENDING INVOICE VIA EMAIL
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port : process.env.SMTP_PORT,
+    host: 'smtp-relay.brevo.com',
+    port : 587,
+    secure: false,
     auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
+        user: '774b9a001@smtp-brevo.com',
+        pass: 'b3LhJM2VOyfrdBNk'
     },
     tls:{
         rejectUnauthorized:false
@@ -61,14 +62,14 @@ app.post('/send-pdf', (req, res) => {
        
           // send mail with defined transport object
         transporter.sendMail({
-            from: ` Buk <hello@buk.com>`, // sender address
+            from: `Buk <aramendia30@gmail.com>`, // sender address
             to: `${email}`, // list of receivers
             replyTo: `${company.email}`,
-            subject: `Invoice from ${company.businessName ? company.businessName : company.name}`, // Subject line
-            text: `Invoice from ${company.businessName ? company.businessName : company.name }`, // plain text body
+            subject: `Factura/Recibo de ${company.businessName ? company.businessName : company.name}`, // Subject line
+            text: `Factura/Recibo de ${company.businessName ? company.businessName : company.name }`, // plain text body
             html: emailTemplate(req.body), // html body
             attachments: [{
-                filename: 'invoice.pdf',
+                filename: company.businessName ? `${company.businessName}.factura.pdf` : `${company.name}.factura.pdf`,
                 path: `${__dirname}/invoice.pdf`
             }]
         });
@@ -107,10 +108,10 @@ app.get('/', (req, res) => {
   })
 
 const DB_URL = process.env.DB_URL
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 mongoose.connect('mongodb+srv://aramendia30:hmUBDw9jKJI5N9iN@cluster0.grg7jjw.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(5000, () => console.log(`Server running on port: 5000`)))
+    .then(() => app.listen(3000, () => console.log(`Server running on port: 3000`)))
     .catch((error) => console.log(error.message))
 
 mongoose.set('useFindAndModify', false)

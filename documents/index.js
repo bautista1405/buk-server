@@ -210,7 +210,7 @@ img {
   <div>
       <hr>
       <h4 style="font-size: 9px">Nota</h4>
-      <p style="font-size: 9px">${notes}</p>
+      <p style="font-size: 9px">${notes ? notes : ''}</p>
   </div>
 </div>
 </body>
