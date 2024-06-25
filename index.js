@@ -99,7 +99,7 @@ app.post('/create-pdf', (req, res) => {
 
 //SEND PDF INVOICE
 app.get('/fetch-pdf', (req, res) => {
-     res.sendFile(`${__dirname}/invoice.pdf`)
+    setTimeout(res.sendFile(`${__dirname}/invoice.pdf`), 3000)
 })
 
 
