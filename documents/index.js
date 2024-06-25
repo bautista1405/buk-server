@@ -102,12 +102,12 @@ table th {
 }
 
 img {
-    width: 100px;
-   
+  width: 100px;
 }
 
 </style>
 </head>
+
 <body>
 <div class="invoice-container">
 <section  class="header">
@@ -121,7 +121,7 @@ img {
 <section class="address">
 
       <div>
-          <p class="title">From:</p>
+          <p class="title">De:</p>
           <h4 style="font-size: 9px; line-height: 5px">${company.businessName ? company.businessName : company.name}</h4>
           <p style="font-size: 9px; line-height: 5px">${company.email}</p>
           <p style="font-size: 9px; line-height: 5px">${company.phoneNumber}</p>
@@ -129,7 +129,7 @@ img {
       </div>
 
       <div style="margin-bottom: 100px; margin-top: 20px">
-      <p class="title">Bill to:</p>
+      <p class="title">Para:</p>
         <h4 style="font-size: 9px; line-height: 5px">${name}</h4>
         <p style="font-size: 9px; line-height: 5px">${email}</p>
         <p style="font-size: 9px; line-height: 5px">${phone}</p>
@@ -137,26 +137,26 @@ img {
       </div>
 
     <div class="status" style="margin-top: -280px">
-        <h1 style="font-size: 12px">${Number(balanceDue) <= 0 ? 'Receipt' : type}</h1>
+        <h1 style="font-size: 12px">${Number(balanceDue) <= 0 ? 'Recibo' : 'Factura'}</h1>
         <p style="font-size: 8px; margin-bottom: 10px">${id}</p>
-        <p class="title" style="font-size: 8px">Status</p>
-        <h3 style="font-size: 12px">${status}</h3>
-        <p class="title" style="font-size: 8px">Date</p>
-        <p  style="font-size: 9px" >${moment(date).format('ll')}</p>
-        <p class="title"  style="font-size: 8px">Due Date</p>
-        <p  style="font-size: 9px">${moment(dueDate).format('ll')}</p>
-        <p class="title"  style="font-size: 8px">Amount</p>
+        <p class="title" style="font-size: 8px">Estado</p>
+        <h3 style="font-size: 12px">${status === 'Paid' ? 'Pago' : 'Impago'}</h3>
+        <p class="title" style="font-size: 8px">Fecha</p>
+        <p  style="font-size: 9px" >${moment(date).format('DD/MM/YYYY')}</p>
+        <p class="title"  style="font-size: 8px">Fecha de Vencimiento</p>
+        <p  style="font-size: 9px">${moment(dueDate).format('DD/MM/YYYY')}</p>
+        <p class="title"  style="font-size: 8px">Monto</p>
         <h3 style="font-size: 12px">${total}</h3>
     </div>
 </section>
 
 <table>
   <tr>
-    <th style="font-size: 9px">Item</th>
-    <th style="font-size: 9px">Quantity</th>
-    <th style="font-size: 9px">Price</th>
-    <th style="font-size: 9px">Discount(%)</th>
-    <th style="text-align: right; font-size: 9px">Amount</th>
+    <th style="font-size: 9px">Producto</th>
+    <th style="font-size: 9px">Cantidad</th>
+    <th style="font-size: 9px">Precio</th>
+    <th style="font-size: 9px">Descuento(%)</th>
+    <th style="text-align: right; font-size: 9px">Total</th>
   </tr>
 
   ${
@@ -177,7 +177,7 @@ img {
 <section class="summary">
     <table>
         <tr>
-          <th style="font-size: 9px">Invoice Summary</th>
+          <th style="font-size: 9px">Resumen</th>
           <th></th>
         </tr>
         <tr>
@@ -186,7 +186,7 @@ img {
         </tr>
 
         <tr>
-            <td style="font-size: 10px">VAT</td>
+            <td style="font-size: 10px">VA(%)</td>
             <td style="text-align: right; font-size: 9px; font-weight: 700">${vat}</td>
           </tr>
 
@@ -196,12 +196,12 @@ img {
           </tr>
 
         <tr>
-            <td style="font-size: 10px" >Paid</td>
+            <td style="font-size: 10px" >Monto Abonado</td>
             <td style="text-align: right; font-size: 9px; font-weight: 700">${totalAmountReceived}</td>
           </tr>
 
           <tr>
-          <td style="font-size: 9px">Balance Due</td>
+          <td style="font-size: 9px">Balance Final</td>
           <td style="text-align: right; font-size: 9px; font-weight: 700">${balanceDue}</td>
         </tr>
         
@@ -209,7 +209,7 @@ img {
   </section>
   <div>
       <hr>
-      <h4 style="font-size: 9px">Note</h4>
+      <h4 style="font-size: 9px">Nota</h4>
       <p style="font-size: 9px">${notes}</p>
   </div>
 </div>

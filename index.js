@@ -15,6 +15,9 @@ import clientRoutes from './routes/clients.js'
 import userRoutes from './routes/userRoutes.js'
 import profile from './routes/profile.js'
 import providerRoutes from './routes/providers.js'
+import stockRoutes from './routes/stocks.js'
+
+import 'moment/locale/es';
 
 import pdfTemplate from './documents/index.js'
 // import invoiceTemplate from './documents/invoice.js'
@@ -32,6 +35,7 @@ app.use('/clients', clientRoutes)
 app.use('/users', userRoutes)
 app.use('/profiles', profile)
 app.use('/providers', providerRoutes)
+app.use('/stocks', stockRoutes)
 
 // NODEMAILER TRANSPORT FOR SENDING INVOICE VIA EMAIL
 const transporter = nodemailer.createTransport({
@@ -103,10 +107,10 @@ app.get('/', (req, res) => {
   })
 
 const DB_URL = process.env.DB_URL
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 
 mongoose.connect('mongodb+srv://aramendia30:hmUBDw9jKJI5N9iN@cluster0.grg7jjw.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(3000, () => console.log(`Server running on port: 3000`)))
+    .then(() => app.listen(5000, () => console.log(`Server running on port: 5000`)))
     .catch((error) => console.log(error.message))
 
 mongoose.set('useFindAndModify', false)
