@@ -1,1 +1,1 @@
-API for a web app that helps small, rising businesses with their inventories alongside their finances. Manage customers, providers, stock, purchases and invoicing in one place, while having insights about your business at hand. As of now, the business have a few clients in my local town.
+API for a web app that helps small, rising businesses with their inventories alongside their finances. Manage customers, providers, stock, purchases and invoicing in one place, while having insights about your business at hand.
